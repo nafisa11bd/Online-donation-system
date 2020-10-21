@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/sea_sky"
     tools:context=".SignupDonoractivity">
 
 
@@ -12,9 +13,10 @@
 
         android:layout_width="219dp"
         android:layout_height="49dp"
-        android:inputType="textPassword"
+        android:autofillHints=""
 
-        android:text="Password"
+        android:hint="@string/Password"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.375"
@@ -28,8 +30,9 @@
         android:layout_height="52dp"
 
         android:layout_marginTop="256dp"
+        android:autofillHints=""
+        android:hint="@string/bkash_no"
         android:inputType="phone"
-        android:text="Bkash no"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.395"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,8 +43,9 @@
         android:layout_width="215dp"
         android:layout_height="48dp"
 
+        android:autofillHints=""
+        android:hint="@string/rocket_no"
         android:inputType="phone"
-        android:text="Rocket No"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.387"
@@ -55,7 +59,7 @@
         android:layout_height="wrap_content"
 
         android:layout_marginStart="152dp"
-        android:text="Sign Up"
+        android:text="@string/sign_up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -68,8 +72,9 @@
         android:layout_width="219dp"
         android:layout_height="51dp"
 
-        android:inputType="textPersonName"
-        android:text="Email"
+        android:autofillHints=""
+        android:hint="@string/email_hint"
+        android:inputType="textWebEmailAddress|textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.395"
@@ -81,7 +86,10 @@
         android:id="@+id/editTexttypedn"
         android:layout_width="211dp"
         android:layout_height="52dp"
-        android:text="Type"
+        android:autofillHints=""
+        android:hint="@string/donor"
+        android:inputType="text"
+        android:text="@string/donor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"

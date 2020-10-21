@@ -5,8 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@drawable/water_grass"
     android:gravity="center"
+    android:orientation="vertical"
     android:padding="18dp"
     tools:context=".MainActivity">
 
@@ -17,7 +18,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
         android:text="@string/app_name"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/fundbtn"
@@ -25,7 +27,8 @@
         android:layout_height="76dp"
         android:background="@android:color/transparent"
         android:text="@string/wanna_raise_a_fund"
-        android:textColor="@color/colorAccent" />
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/donatebtn"
@@ -33,7 +36,8 @@
         android:layout_height="70dp"
         android:background="@android:color/transparent"
         android:text="@string/wanna_donate"
-        android:textColor="@color/colorAccent" />
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold" />
 
 
 </LinearLayout>

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DownloadManager;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -67,48 +68,61 @@ public class LoginDonorActivity extends AppCompatActivity {
                     passwordediitextdnr.setError("Password is Required");
                 }
 
-                fAuth.signInWithEmailAndPassword(email,Password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful())
-                                {
-                    /*String mUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                    if(mUid == null)
-                        Toast.makeText(loginfundactivity.this,"LOL MAN ! UID NAI !",Toast.LENGTH_SHORT)
-                                .show();
-
-                    Toast.makeText(loginfundactivity.this,mUid,Toast.LENGTH_SHORT)
-                            .show();*/
-                                    String mUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                                    Query query = FirebaseDatabase.getInstance().getReference("Users").child(mUid);
-                                    query.addValueEventListener(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                            String type=dataSnapshot.child("type").getValue().toString();
-                                            if (type.equals("Donor"))
-                                            {
-                                                Toast.makeText(LoginDonorActivity.this,"Logged in successfully",Toast.LENGTH_SHORT)
-                                                        .show();
-
-                                                startActivity(new Intent(getApplicationContext(),DetailsActivity.class));
-                                            }
-
-                                        }
-
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                        }
-                                    });
-
-                                }
-                            }
-                        });
-
+                loginAccount(email, Password);
             }
         });
 
 
+    }
+
+    private void loginAccount(String email, String Password) {
+
+        final ProgressDialog progressDialog = new ProgressDialog(LoginDonorActivity.this, R.style.Theme_AppCompat_Light_Dialog);
+        progressDialog.setIndeterminate(false);
+        progressDialog.setMessage("Authenticating...");
+        progressDialog.show();
+
+        fAuth.signInWithEmailAndPassword(email,Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                if(task.isSuccessful())
+                {
+                    String mUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    Query query = FirebaseDatabase.getInstance().getReference("Users").child(mUid);
+
+                    query.addValueEventListener(new ValueEventListener() {
+
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            String type=dataSnapshot.child("type").getValue().toString();
+                            if (type.equals("Donor"))
+                            {
+                                progressDialog.dismiss();
+                                Toast.makeText(LoginDonorActivity.this,"Logged in Successfully!",Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), DetailsActivity.class));
+                                finish();
+                            }
+                            else {
+                                progressDialog.dismiss();
+                                Toast.makeText(LoginDonorActivity.this, "Authentication Failed !", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                }
+                else {
+                    progressDialog.dismiss();
+                    Toast.makeText(LoginDonorActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+
+        });
     }
 }

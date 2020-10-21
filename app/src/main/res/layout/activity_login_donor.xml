@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginDonorActivity">
+    tools:context=".LoginDonorActivity"
+    android:background="@drawable/whitehillbg">
 
     <EditText
         android:id="@+id/emaildnrtxtview"
 
         android:layout_width="194dp"
         android:layout_height="46dp"
+        android:autofillHints=""
         android:hint="@string/email_hint"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -44,7 +46,7 @@
 
         android:layout_marginBottom="400dp"
         android:backgroundTint="#A593E4"
-        android:text="Sign In"
+        android:text="@string/sign_in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
@@ -60,7 +62,7 @@
         android:layout_height="44dp"
         android:layout_marginStart="112dp"
         android:layout_marginBottom="284dp"
-        android:text="Are you not registered?"
+        android:text="@string/are_you_not_registered"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -73,7 +75,7 @@
         android:layout_height="50dp"
         android:layout_marginBottom="116dp"
         android:backgroundTint="#A593E4"
-        android:text="Sign Up"
+        android:text="@string/sign_up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

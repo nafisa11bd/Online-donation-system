@@ -3,6 +3,7 @@ package com.example.onlinedonationproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -17,14 +18,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class signupfundactivity extends AppCompatActivity implements View.OnClickListener  {
-    EditText Emailfnd ;
-    EditText Passwordfnd ;
+public class signupfundactivity extends AppCompatActivity implements View.OnClickListener {
+    EditText Emailfnd;
+    EditText Passwordfnd;
     EditText Ornztionfnd;
-    EditText bkashfnd ;
-    EditText rocketfnd ;
+    EditText bkashfnd;
+    EditText rocketfnd;
     EditText typee;
-   // Button Signup ;
+    // Button Signup ;
     private FirebaseAuth fAuth;
 
 
@@ -34,19 +35,18 @@ public class signupfundactivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_signupfundactivity);
         this.setTitle("Sign Up");
 
-       Emailfnd=findViewById(R.id.emaileditText);
-       Passwordfnd=findViewById(R.id.passwordEditText);
-       Ornztionfnd=findViewById(R.id.orgzeditText);
-       bkashfnd=findViewById(R.id.bkashEditText);
-       rocketfnd=findViewById(R.id.RocketEditText);
-       typee=findViewById(R.id.editTexttype);
-       Button Signup=findViewById(R.id.signupbtn);
-      // Signup=findViewById(R.id.signupbtn);
-       fAuth=FirebaseAuth.getInstance();
+        Emailfnd = findViewById(R.id.emaileditText);
+        Passwordfnd = findViewById(R.id.passwordEditText);
+        Ornztionfnd = findViewById(R.id.orgzeditText);
+        bkashfnd = findViewById(R.id.bkashEditText);
+        rocketfnd = findViewById(R.id.RocketEditText);
+        typee = findViewById(R.id.editTexttype);
+        Button Signup = findViewById(R.id.signupbtn);
+        // Signup=findViewById(R.id.signupbtn);
+        fAuth = FirebaseAuth.getInstance();
 
 
-
-       Signup.setOnClickListener(this);
+        Signup.setOnClickListener(this);
 
 
 
@@ -93,15 +93,6 @@ public class signupfundactivity extends AppCompatActivity implements View.OnClic
            }
        });*/
 
-
-
-
-
-
-
-
-
-
     }
 
   /*  @Override
@@ -115,91 +106,96 @@ public class signupfundactivity extends AppCompatActivity implements View.OnClic
     }*/
 
 
-    private void registerUser()
-{
+    private void registerUser() {
 
 
-    final String organztn= Ornztionfnd.getText().toString().trim();
-    final String emaill=Emailfnd.getText().toString().trim();
-    String password=Passwordfnd.getText().toString().trim();
-    final String bkashh=bkashfnd.getText().toString().trim();
-    final String type=typee.getText().toString().trim();
+        final String organztn = Ornztionfnd.getText().toString().trim();
+        final String emaill = Emailfnd.getText().toString().trim();
+        String password = Passwordfnd.getText().toString().trim();
+        final String bkashh = bkashfnd.getText().toString().trim();
+        final String type = typee.getText().toString().trim();
 
-    if (organztn.isEmpty()) {
-        Ornztionfnd.setError("Organization is required");
-        Ornztionfnd.requestFocus();
-        return;
-    }
+        if (organztn.isEmpty()) {
+            Ornztionfnd.setError("Organization is required");
+            Ornztionfnd.requestFocus();
+            return;
+        }
 
-    if (emaill.isEmpty()) {
-        Emailfnd.setError("Email is required");
-        Emailfnd.requestFocus();
-        return;
-    }
+        if (emaill.isEmpty()) {
+            Emailfnd.setError("Email is required");
+            Emailfnd.requestFocus();
+            return;
+        }
 
 
+        if (password.isEmpty()) {
+            Passwordfnd.setError("Password required");
+            Passwordfnd.requestFocus();
+            return;
+        }
 
-    if (password.isEmpty()) {
-        Passwordfnd.setError("Password required");
-        Passwordfnd.requestFocus();
-        return;
-    }
+        if (password.length() < 6) {
+            Passwordfnd.setError("Password should not be less than 6");
+            Passwordfnd.requestFocus();
+            return;
+        }
 
-    if (password.length() < 6) {
-        Passwordfnd.setError("Password should not be less than 6");
-        Passwordfnd.requestFocus();
-        return;
-    }
+        if (bkashh.isEmpty()) {
+            bkashfnd.setError("Bkash number should be included");
+            bkashfnd.requestFocus();
+            return;
+        }
 
-    if (bkashh.isEmpty()) {
-        bkashfnd.setError("Bkash number should be included");
-        bkashfnd.requestFocus();
-        return;
-    }
+        final ProgressDialog progressDialog = new ProgressDialog(signupfundactivity.this, R.style.Theme_AppCompat_Light_Dialog);
+        progressDialog.setIndeterminate(false);
+        progressDialog.setMessage("Creating User..");
+        progressDialog.show();
 
-    fAuth.createUserWithEmailAndPassword(emaill, password)
-            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
+        fAuth.createUserWithEmailAndPassword(emaill, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
 
-                    if (task.isSuccessful()) {
+                        if (task.isSuccessful()) {
 
-                        User user = new User(
-                                organztn,
-                                emaill,
-                                bkashh,
-                                type
-                        );
+                            User user = new User(
+                                    organztn,
+                                    emaill,
+                                    bkashh,
+                                    type
+                            );
 
-                        FirebaseDatabase.getInstance().getReference("Users")
-                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
+                            FirebaseDatabase.getInstance().getReference("Users")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
 
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(signupfundactivity.this, "User Created", Toast.LENGTH_LONG).show();
-                                    startActivity(new Intent(getApplicationContext(),loginfundactivity.class));
-                                } else {
-                                    //display a failure message
+                                    if (task.isSuccessful()) {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(signupfundactivity.this, "User Created", Toast.LENGTH_LONG).show();
+                                        startActivity(new Intent(getApplicationContext(), loginfundactivity.class));
+                                        finish();
+                                    } else {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(signupfundactivity.this, "Failed ! Try Again.", Toast.LENGTH_LONG).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
 
-                    } else {
-                        Toast.makeText(signupfundactivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        } else {
+                            progressDialog.dismiss();
+                            Toast.makeText(signupfundactivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
                     }
-                }
-            });
+                });
 
-}
-
+    }
 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId())
-        {
+        switch (v.getId()) {
             case R.id.signupbtn:
                 registerUser();
                 break;

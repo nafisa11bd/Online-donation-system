@@ -1,57 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:padding="10dp"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/whitehillbg"
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/titletext"
-        android:layout_marginTop="5dp"
-        android:text="Title"
-/>
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/title" />
+
+    <TextView
         android:id="@+id/ddd"
-        android:layout_marginTop="5dp"
-        android:text="Description"
-        />
-
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/description" />
+
+    <TextView
         android:id="@+id/organiz"
-        android:layout_marginTop="5dp"
-        android:text="Organization"
-        />
-
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/organization" />
+
+    <TextView
         android:id="@+id/Bkashno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="Bkash Number"
-        />
+        android:text="@string/bkash_number" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/emailt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="Email Address"
-        />
+        android:text="@string/email_address" />
+
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/bkbutton"
-        android:text="Bkash"
-        />
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/bkash" />
+
+    <Button
         android:id="@+id/rkbutton"
-        android:text="Rocket"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/rocket" />
 </LinearLayout>

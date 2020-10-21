@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/abstract_blue"
     tools:context=".ProfileActivity">
 
     <TextView
@@ -11,7 +12,7 @@
         android:layout_width="266dp"
         android:layout_height="54dp"
 
-        android:text="Profile"
+        android:text="@string/profile"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,6 +25,7 @@
         android:id="@+id/imageid"
         android:layout_width="121dp"
         android:layout_height="106dp"
+        android:contentDescription="@string/todo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
