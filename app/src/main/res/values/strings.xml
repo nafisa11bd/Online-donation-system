@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Online Donation Project</string>
+    <string name="wanna_raise_a_fund">Wanna Raise A Fund?</string>
+    <string name="wanna_donate">Wanna Donate?</string>
+    <string name="Password">Password</string>
+    <string name="email_hint">Email</string>
+</resources>

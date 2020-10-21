@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="18dp"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="339dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/app_name"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/fundbtn"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:background="@android:color/transparent"
+        android:text="@string/wanna_raise_a_fund"
+        android:textColor="@color/colorAccent" />
+
+    <Button
+        android:id="@+id/donatebtn"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@android:color/transparent"
+        android:text="@string/wanna_donate"
+        android:textColor="@color/colorAccent" />
+
+
+</LinearLayout>
